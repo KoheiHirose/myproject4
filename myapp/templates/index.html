@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+
+        <title>時計</title>
+
+        <script>
+            function showClock1() {
+                var nowTime = new Date();
+                var nowYear = nowTime.getFullYear()
+                var nowMonth = nowTime.getMonth() + 1
+                var nowDate = nowTime.getDate()
+                var nowDayOfWeek = nowTime.getDay()
+                var nowDayOfWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ][nowDayOfWeek] ;
+                var nowHour = nowTime.getHours()
+                var nowMinute = nowTime.getMinutes()
+                var nowSecond = nowTime.getSeconds()
+                var nowMillsecond =nowTime.getMilliseconds()
+                if ( nowHour < 10 ) nowHour = "0" + nowHour;
+                if ( nowMinute < 10 ) nowMinute = "0" + nowMinute;
+                if ( nowSecond < 10 ) nowSecond = "0" + nowSecond;
+                var msg1 = nowYear + "年" + nowMonth + "月" + nowDate + "日" + "(" + nowDayOfWeekStr + ")";
+                var msg2 = nowHour + ":" + nowMinute + ":" + nowSecond;
+                document.getElementById("RealtimeCalendarArea").innerHTML = msg1;
+                document.getElementById("RealtimeClockArea").innerHTML = msg2;
+            }
+            setInterval(showClock1, 1000)
+        </script>
+
+    </head>
+
+    <body>
+        <p id="RealtimeCalendarArea" style="font:bold 30pt Times New Roman; color:#008888; letter-spacing:2px; text-align: center;">カレンダー</p>
+        <p id="RealtimeClockArea" style="font:bold 40pt Times New Roman; color:#008888; letter-spacing:2px; text-align: center;">時計</p>
+    </body>
+
+</html>
